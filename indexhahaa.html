@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <form class="form_post" method = "post">
+        <input type="text" name="title" placeholder="Enter Your Title" autocomplete="off">
+        <input type="text" name="des" placeholder="Enter Your Decscription" autocomplete="off">
+        <input type="text" name="url" placeholder="Enter Your URL_img" autocomplete="off">
+        <input type="number" min="0" name="price" placeholder="Enter Your Price" autocomplete="off">
+        <input type="number" min="0" name="amount" placeholder="Enter Your Amount" autocomplete="off">
+        <input type="number" min="0" name="quality" placeholder="Enter Your Quality" autocomplete="off">
+        <button class="btn">Add to Count</button>
+    </form>
+    <div class="list-course"></div>
+
+    <div class="loading"></div>
+
+    <style>
+        .loading{
+            width:30px;
+            height:30px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            border-radius: 50%;
+            display: none;
+            border-left: 2px solid rgb(49, 105, 82);
+            border-right: 3px solid rgb(49, 105, 82);
+            transform: translate(-50%,-50%);
+            animation: spin 0.3s infinite linear;
+        }
+        @keyframes spin{
+            to{
+                transform: translate(-50%,-50%) rotate(360deg);
+            }
+        }
+        *{
+            box-sizing: border-box;
+        }
+        .form_post{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        input , .btn{
+            padding:10px;
+            width: 30%;
+            margin: 10px;
+        }
+        .list-course{
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .btn{
+            border:none;
+            background-color: rgb(49, 105, 82);
+            color: white;
+        }
+        .item{
+           width: 350px;
+    
+            margin: 10px;
+            height:420px;
+            font-size: 15px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        .item img{
+            width: 100%;
+            height:200px;
+            object-fit: cover;
+        }
+        .content{
+            padding:10px;
+            line-height: 20px;
+            position: relative;
+        }
+        .price{
+            font-weight: 800;
+            color:red;
+        }
+        .icon{
+            position: absolute;
+            top:0;
+            right:0;
+        }
+        i{
+            background-color:gainsboro;
+            padding:5px 10px;
+            color:gray;
+            border-radius: 2px;
+        }
+        .icon i{
+            margin: 10px;
+            font-size: 15px;
+        }
+        .title{
+            color:red;
+            font-weight: 700;
+        }
+        .image{
+            position: relative;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+    <script>
+        const api = "http://localhost:3000/courses";
+        let form = document.querySelector(".form_post");
+        let list_courses = document.querySelector(".list-course");
+        let loading = document.querySelector(".loading");
+        let Str_value = "";
+        let Update_api = null;
+        async function newApi({title,des,price,url,amount,quality}){
+            await fetch(api,{
+                method : "POST",
+                body : JSON.stringify({
+                    title,
+                    des,
+                    price,
+                    url,
+                    amount,
+                    quality
+                }),
+                headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                },
+            });
+        }
+        async function UpdateApi({id,title,des,price,url,amount,quality}){
+            await fetch(`${api}/${id}`,{
+                method : "PUT",
+                body : JSON.stringify({
+                    title,
+                    des,
+                    price,
+                    url,
+                    amount,
+                    quality
+                }),
+                headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                },
+            });
+        }
+        async function DeleteApi(id){
+            await fetch(`${api}/${id}`,{
+                method : "DELETE",
+            });
+        }
+        async function getApi(id){
+            const responve = await fetch(`${api}/${id}`);
+            let item = await responve.json();
+            return item;
+        }
+        async function RenderItem(link = api){
+            const responve = await fetch(link);
+            let coures = await responve.json();
+            //dog nay de lam cho khong bi trung lap lai
+            list_courses.innerHTML = "";
+            if(Array.isArray(coures) && coures.length > 0){
+                [...coures].forEach(item => CreateItem(item));
+            }
+        }
+        RenderItem();
+        function CreateItem(courses){
+            let temple = 
+            `<div class="item">
+                <div class="image">
+                    <div class="icon">
+                        <i class="fa-solid fa-pencil update" data-id="${courses.id}"></i>
+                        <i class="fa-solid fa-trash-can" data-id="${courses.id}"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <img src="${courses.url}" alt="">  
+                </div>
+                    <div class="content">
+                        <div class="maid"><b>Mã ID Khoá học:</b><span class="id">${courses.id}</span></div>
+                        <div class="title">${courses.title}</div>
+                        <div class="mota"><b>Mô tả:</b><span class="des">${courses.des}</span> </div>
+                        <div class="like"><b>Lượt mua:</b><span class="amount">${courses.amount} đã mua</span></div>
+                        <div class="sl"><b>Sô lượng:</b><span class="quality">${courses.quality} Thành viên đang theo học</span></div>
+                        <div class="gia"><b>Giá tiền :</b><span class="price">${formatCurrency(`${courses.price}`)} VND</span></div>
+                    </div>
+             </div>
+            `;
+            list_courses.insertAdjacentHTML("beforeend",temple);
+        }
+        form.addEventListener("submit",function (e) {
+            e.preventDefault();
+            let title1 = this.elements["title"].value;
+            let des1 = this.elements["des"].value;
+            let price1 = this.elements["price"].value;
+            let url1 = this.elements["url"].value;
+            let amount1 = this.elements["amount"].value;
+            let quality1 = this.elements["quality"].value;
+            if(!title1 && !des1 && !price1 && !url1 && !amount1 && !quality1){
+                alert("Vui lòng nhập đầy đủ thông tin");
+                return ;
+            }
+            const courses = {
+                title : title1,
+                des : des1,
+                price :price1,
+                url : url1,
+                amount : amount1,
+                quality : quality1,
+            }
+           
+            //Neu nguoi click vao nut SUA thi Update_api se co gia tri , co nghi ngta mun sua nen bat ngta nhap lai
+           Update_api ? UpdateApi({id:Update_api ,...courses}) : newApi(courses);
+           Update_api = null;       
+            this.reset();
+        });
+        list_courses.addEventListener("click",async function (e) {
+           if(e.target.matches(".fa-pencil")){
+                let id = e.target.dataset.id;
+                Update_api = id;
+                console.log(Update_api);
+                //newvale la minh dung target de lay ra theo dataset la id
+                const newvalue = await getApi(id);
+                console.log(newvalue);
+                form.elements["title"].value = newvalue.title;
+                form.elements["des"].value = newvalue.des;
+                form.elements["price"].value = newvalue.price;
+                form.elements["url"].value = newvalue.url;
+                form.elements["amount"].value = newvalue.amount;
+                form.elements["quality"].value = newvalue.quality
+                await RenderItem();
+           }
+           else if(e.target.matches(".fa-heart")){
+            e.target.classList.toggle("red");
+           }
+           else if(e.target.matches(".fa-trash-can")){
+            let id = e.target.dataset.id;
+            if(id){
+                await DeleteApi(id);
+            }
+           }
+          
+        })
+        function formatCurrency(test1){
+            const format = test1.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            return format;
+        }
+    </script>
+</body>
+</html>

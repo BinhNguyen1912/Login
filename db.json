@@ -1,0 +1,41 @@
+{
+  "courses": [
+    {
+      "title": "Lập trình Java và SQL",
+      "des": "28Tech là một đội nhóm gồm các Lập trình viên hiện đang làm việc ở nhiều lĩnh vực khác nhau ",
+      "price": "7,000,000đ",
+      "url": "https://cdn-main.28tech.com.vn/thumbs/anh-khoa-hoc/be-java_thumb_500.png",
+      "amount": "750,000",
+      "quality": "1,000,000",
+      "id": "9823"
+    },
+    {
+      "title": "Lập trình Back-end NodeJS",
+      "des": "Khóa học dành cho các bạn học viên có định hướng theo phát triển website phía Backend sử dụng NodeJS và các Framework liên quan.",
+      "price": "6500000",
+      "url": "https://cdn-main.28tech.com.vn/media/anh-khoa-hoc/be-node.png",
+      "amount": "1111",
+      "quality": "11111",
+      "id": "5ea1"
+    },
+    {
+      "id": "5e5c",
+      "title": "Cấu trúc dữ liệu và Giải thuật ",
+      "des": "Khóa học Cấu trúc dữ liệu & Giải thuật (Thuật toán) gồm 3 phần chính : Ôn luyện lại kỹ thuật lập trình với C++ và thư viện STL, Thuật toán, Cấu trúc dữ liệu. ",
+      "price": "8000000",
+      "url": "https://cdn-main.28tech.com.vn/media/anh-khoa-hoc/ca%CC%82%CC%81u%20tru%CC%81c%20du%CC%9B%CC%83%20lie%CC%A3%CC%82u%20va%CC%80%20gia%CC%89i%20thua%CC%A3%CC%82tpng.png",
+      "amount": "111111",
+      "quality": "12132"
+    }
+  ],
+  "ans_test" : [
+    {
+      "id" : 1,
+      "question" : "Ban dang la gi do ? ",
+      "arr_question":[
+        "an ca","an cut","an gi","haha"
+      ],
+      "answer" : "an ca"
+    }
+  ]
+}

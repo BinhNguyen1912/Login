@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <form class="form_login">
+        <div class="lable_form">Login Form</div>
+        <div class="login">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" class="user" placeholder="User Name" name="user_name">
+        </div>
+        <div class="login">
+            <i class="fa-solid fa-eye"></i>
+            <input type="password" class="pass" placeholder="****" name="user_pass" autocomplete="off">
+        </div>
+        <div class="handle">
+            <div class="handle_remember">
+                <input type="checkbox" class="checkbox">
+                <label for="">Remember Me</label>
+            </div>
+            <a class="handle_fogotpass">Fogot password?</a>
+        </div>
+        <button class="btn">Login</button>
+        <button class="signup btn" style="background-color:#AAAAAA">Sign up</button>
+        <div class="or">Or</div>
+        <div class="icon">
+            <div class="icon_item fb">
+                <i class="fa-brands fa-facebook"></i>
+                <div class="icon_title">Facebook</div>
+            </div>
+            <div class="icon_item gg">
+                <i class="fa-brands fa-google"></i>
+                <div class="icon_title">Google</div>
+            </div>
+        </div>
+    </form>
+    <form class="form_signup">
+        <div class="lable_form">Sign up</div>
+        <input type="text" placeholder="Enter Your FullName" class="input" id="fullname" name="fullname">
+        <input type="text" placeholder="Enter Your Email" class="input" name="mail">
+        <input type="password" placeholder="Enter Your PassWord" class="input" name="password" autocomplete="off">
+        <input type="password" placeholder="Confirm PassWord" class="input" name="confirm_pass" autocomplete="off">
+        <button class="btn">Sign up</button>
+        <button class="loginbtn btn" style="background-color:#AAAAAA">Login</button>
+        <div class="or">Or</div>
+        <div class="icon">
+            <div class="icon_item fb">
+                <i class="fa-brands fa-facebook"></i>
+                <div class="icon_title">Facebook</div>
+            </div>
+            <div class="icon_item gg">
+                <i class="fa-brands fa-google"></i>
+                <div class="icon_title">Google</div>
+            </div>
+        </div>
+    </form>
+    <form action="" class="form_forgot">
+        <label>Nhập tài khoản của bạn</label>
+        <input type="text" class="" name="forgot">
+        <button class="btn_forgot">Gửi</button>
+    </form>
+    <style>
+        .form_forgot{
+            position: fixed;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width:300px;
+            height:auto;
+            background-color: #fff;
+            padding:20px;
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+        .form_forgot label{
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .btn_forgot{
+            padding:5px 20px;
+        }
+        .form_forgot input{
+            width: 100%;
+            margin-bottom: 20px;
+            padding:10px;
+            border: 1px solid #000;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            position: relative;
+            background-image: url(https://wallpapercave.com/wp/wp10397998.jpg);
+            background-size: 100% auto;
+        }
+        .form_signup , .form_login{
+            position: fixed;
+            top:50%;
+            left:50%;
+            width: 50%;
+            transform: translate(-50%,-50%);
+            background-color: transparent;
+            line-height: 30px;
+            padding:10px;
+        }
+        .form_signup{
+            display: none;
+        }
+        .lable_form{
+            font-size: 42px;
+            text-align: center;
+            margin-bottom:40px ;
+            letter-spacing: 15px;
+           font-weight: 800;
+        }
+        .login{
+            display: flex;
+            width: 100%;
+            margin: 20px auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .user , .pass{
+            width: 100%;
+            padding:10px;
+            color:#000;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-color: #AAAAAA;
+            background: transparent;
+        }
+        .fa-user , .fa-eye{
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .fa-user{
+            margin-right: 15px;
+        }
+        .handle{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color:#003A6C;
+        }
+        .handle_remember{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .btn{
+            width:100%;
+            padding:5px;
+            color: white;
+            font-size: 20px;
+            border: none;
+            background-color: #FF6BCB;
+            margin-bottom: 10px;
+        }
+        .or{
+            margin: 15px;
+            text-align: center;
+            font-weight: 800;
+            color:greenyellow;
+        }
+        .icon{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .icon_item{
+            display: flex;
+            align-items: center;
+            width: calc(100% /2 - 20px);
+            color:white;
+        }
+        .fb{
+            background-color:#0866FF;
+            color:white;
+        }
+        .gg{
+            background-color:white;
+            color: #000;
+        }
+        .fa-google , .fa-facebook{
+            margin-right: 10px;
+            border-right: 1px solid #7D7D7D;
+            font-size: 20px;
+            padding:5px;
+        }
+        .icon_title{
+            font-weight: 700;
+        }
+        /* sign up */
+        .input{
+            width: 100%;
+            padding:10px;
+            margin: 10px;
+            border: none;
+        }
+    </style>
+   <script src="login.js"></script>
+</body>
+</html>
